@@ -11,6 +11,8 @@ import json
 import re
 import subprocess
 from urllib.parse import urljoin, urlsplit
+from html import unescape
+from search_metadata import structured_data
 
 ROOT = Path(__file__).resolve().parents[1]
 home = (ROOT / 'index.html').read_text()
@@ -37,13 +39,16 @@ project_css = '''
 .readme li { margin-block: 8px; }
 .readme a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 .readme blockquote { margin: 24px 0; padding: 8px 24px; border-left: 2px solid var(--violet); background: var(--surface); }
-.readme pre { overflow-x: auto; padding: 24px; background: var(--surface); border: 1px solid var(--line); font-size: 12px; line-height: 1.6; overflow-wrap: normal; }
+.readme pre { width: max-content; min-width: 100%; margin: 0; padding: 24px; background: var(--surface); border: 1px solid var(--line); font-size: 12px; line-height: 1.6; overflow-wrap: normal; }
 .readme code { font-family: 'Courier New', monospace; font-size: .9em; color: var(--ink); background: var(--surface-raised); padding: 2px 4px; }
 .readme pre code { background: none; padding: 0; font-size: inherit; }
-.readme table { display: block; width: 100%; max-width: 100%; overflow-x: auto; border-collapse: collapse; font-size: 13px; }
+.readme table { width: 100%; border-collapse: collapse; font-size: 13px; }
 .readme th, .readme td { text-align: left; border: 1px solid var(--line); padding: 12px 16px; min-width: 140px; }
 .readme th { color: var(--ink); background: var(--surface-raised); }
 .readme td { color: var(--muted); }
+.readme-scroll { max-width: 100%; overflow-x: auto; margin-block: 20px; }
+.readme-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.readme-toc a { display: inline-block; min-height: 28px; }
 .readme img { max-width: 100%; height: auto; }
 .readme-toc { position: sticky; top: 28px; max-height: calc(100vh - 56px); overflow-y: auto; border-left: 1px solid var(--line); padding-left: 22px; }
 .readme-toc p { font: 10px 'Courier New', monospace; letter-spacing: 1.5px; color: var(--accent); margin: 0 0 18px; }
@@ -96,14 +101,18 @@ def shell(title, description, canonical_path, body, base, extra_css=""):
   <meta property="og:description" content="{escape(description, quote=True)}">
   <meta property="og:url" content="https://www.jallits.com/{canonical_path}">
   <meta property="og:image" content="https://www.jallits.com/assets/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="JALLITS engineering advisory: Engineering clarity. Delivery in sync. with luminous geometric artwork.">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="{base}assets/mark.svg" type="image/svg+xml">
+  {structured_data(title + " — JALLITS", description, canonical_path)}
   <style>{styles}\n{project_css}{extra_css}</style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   {navigation(header)}
-  <main id="main" class="project-page wrap">{body}</main>
+  <main id="main" class="project-page wrap" tabindex="-1">{body}</main>
   {navigation(footer)}
   <script>{theme_scripts[-1]}</script>
 </body>
@@ -129,17 +138,32 @@ def main():
                 base = source['repository'] + '/blob/' + source['commit'] + '/'
             return f'{attribute}={quote}{escape(urljoin(base, url), quote=True)}{quote}'
         fragment = re.sub(r'\b(href|src)=("|\')(.*?)\2', resolve, fragment)
+        context = source['name'] + ' README'
+        block_number = 0
+        def accessible_block(match):
+            nonlocal context, block_number
+            block = match[0]
+            if re.match(r'<h[1-6]\b', block):
+                context = unescape(re.sub(r'<[^>]+>', '', block)).strip()
+                return block
+            block_number += 1
+            kind = 'table' if block.startswith('<table') else 'code or diagram'
+            label = escape(f'{context}: {kind} {block_number}', quote=True)
+            if kind == 'table':
+                block = re.sub(r'<th(\s[^>]*)?>', lambda m: '<th scope="col"' + (m[1] or '') + '>', block)
+            return f'<div class="readme-scroll" role="region" aria-label="{label}" tabindex="0">{block}</div>'
+        fragment = re.sub(r'<h[1-6]\b[^>]*>.*?</h[1-6]>|<table\b[^>]*>.*?</table>|<pre\b[^>]*>.*?</pre>', accessible_block, fragment, flags=re.S)
         headings = Headings()
         headings.feed(fragment)
         toc = ''.join(f'<li><a href="#{escape(id, quote=True)}">{escape(text)}</a></li>' for id, text in headings.items)
         body = f'''<nav class="project-breadcrumb" aria-label="Breadcrumb"><a href="../../">JALLITS</a><span aria-hidden="true">/</span><a href="../">Projects</a><span aria-hidden="true">/</span><span>{escape(source['name'])}</span></nav>
     <div class="project-tools"><a class="button" href="{source['repository']}">View on GitHub {arrow}</a><a class="text-link" href="{source['repository']}/blob/{source['commit']}/README.md">README source {arrow}</a><p>README SNAPSHOT / {source['commit'][:7]}</p></div>
     <div class="readme-layout"><article class="readme" aria-label="{escape(source['name'])} README">{fragment}</article><nav class="readme-toc" aria-label="README contents"><p>ON THIS PAGE</p><ul>{toc}</ul></nav></div>'''
-        (directory / 'index.html').write_text(shell(source['name'], f"Read the {source['name']} project README, including its planning status, architecture, roadmap, and contribution guidance.", f'projects/{slug}/', body, '../../'))
+        (directory / 'index.html').write_text(shell(source['name'] + ': Linux Project Documentation', f"Explore {source['name']} planning-stage documentation for a proposed GNOME-independent Linux credential project, including architecture, security, and roadmap.", f'projects/{slug}/', body, '../../'))
 
     cards = ''.join(f'''<article class="project-card"><div class="tags"><span>LINUX</span><span>PLANNING &amp; DESIGN</span></div><h2>{escape(source['name'])}</h2><p>Read the project’s overview, proposed architecture, roadmap, and contribution guidance.</p><a class="project-link" href="{slug}/">Read the README {arrow}</a></article>''' for slug, source in sources.items())
     body = f'''<div class="project-index"><nav class="project-breadcrumb" aria-label="Breadcrumb"><a href="../">JALLITS</a><span aria-hidden="true">/</span><span>Projects</span></nav><p class="eyebrow">BUILDING IN THE OPEN</p><h1>Open source projects.</h1><p>Explore our Linux projects through their own documentation. Both are currently in planning and design; these READMEs describe proposals, not released applications.</p><div class="project-grid">{cards}</div></div>'''
-    (ROOT / 'projects/index.html').write_text(shell('Open source projects', 'Read the Keyringd and Keyring Manager project documentation from JALLITS.', 'projects/', body, '../'))
+    (ROOT / 'projects/index.html').write_text(shell('Open Source Linux Projects', 'Explore Keyringd and Keyring Manager, two planning-stage Linux credential projects from JALLITS. Read their architecture, security, and roadmap documentation.', 'projects/', body, '../'))
     print('Generated project directory and both README pages.')
 
 

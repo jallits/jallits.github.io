@@ -7,17 +7,83 @@
   <script>
     try { if (localStorage.getItem("jallits-theme") === "light") document.documentElement.dataset.theme = "light"; } catch {}
   </script>
-  <title>Open source projects — JALLITS</title>
-  <meta name="description" content="Read the Keyringd and Keyring Manager project documentation from JALLITS.">
+  <title>Open Source Linux Projects — JALLITS</title>
+  <meta name="description" content="Explore Keyringd and Keyring Manager, two planning-stage Linux credential projects from JALLITS. Read their architecture, security, and roadmap documentation.">
   <link rel="alternate" type="text/plain" title="JALLITS LLM site guide" href="../llms.txt">
   <link rel="canonical" href="https://www.jallits.com/projects/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Open source projects — JALLITS">
-  <meta property="og:description" content="Read the Keyringd and Keyring Manager project documentation from JALLITS.">
+  <meta property="og:title" content="Open Source Linux Projects — JALLITS">
+  <meta property="og:description" content="Explore Keyringd and Keyring Manager, two planning-stage Linux credential projects from JALLITS. Read their architecture, security, and roadmap documentation.">
   <meta property="og:url" content="https://www.jallits.com/projects/">
   <meta property="og:image" content="https://www.jallits.com/assets/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="JALLITS engineering advisory: Engineering clarity. Delivery in sync. with luminous geometric artwork.">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.jallits.com/#organization",
+      "name": "JALLITS",
+      "url": "https://www.jallits.com/",
+      "logo": "https://www.jallits.com/assets/logo.svg",
+      "sameAs": [
+        "https://www.linkedin.com/company/jallits",
+        "https://github.com/jallits"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.jallits.com/#website",
+      "name": "JALLITS",
+      "url": "https://www.jallits.com/",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://www.jallits.com/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.jallits.com/projects/#webpage",
+      "url": "https://www.jallits.com/projects/",
+      "name": "Open Source Linux Projects \u2014 JALLITS",
+      "description": "Explore Keyringd and Keyring Manager, two planning-stage Linux credential projects from JALLITS. Read their architecture, security, and roadmap documentation.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://www.jallits.com/#website"
+      },
+      "publisher": {
+        "@id": "https://www.jallits.com/#organization"
+      },
+      "breadcrumb": {
+        "@id": "https://www.jallits.com/projects/#breadcrumbs"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.jallits.com/projects/#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "JALLITS",
+          "item": "https://www.jallits.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Open source projects",
+          "item": "https://www.jallits.com/projects/"
+        }
+      ]
+    }
+  ]
+}
+</script>
   <style>:root {
   color-scheme: dark;
   --bg: #06090f; --surface: #0c111b; --surface-raised: #111925;
@@ -258,6 +324,25 @@ h3 { font-size: 25px; line-height: 1.2; font-weight: 500; letter-spacing: -.7px;
 .profile-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; flex-shrink: 0; }
 @media (max-width: 768px) { .credibility-grid { grid-template-columns: minmax(0, 1fr); } .profile-callout { flex-direction: column; align-items: flex-start; padding: 26px; } .leadership-scope > h3 { font-size: 27px; } }
 
+/* Keyboard access and minimum standalone control targets. */
+h1, h2, h3, h4 { overflow-wrap: anywhere; }
+.header { height: auto; min-height: 104px; padding-block: 22px; }
+.header-actions, .header nav { min-width: 0; }
+.header nav { flex-wrap: wrap; row-gap: 12px; }
+.hero { padding-bottom: 190px; }
+.button { max-width: 100%; }
+#main:focus { outline: none; }
+.button:focus-visible { outline: 2px solid var(--button-ink); outline-offset: -5px; }
+.header nav > a { display: inline-flex; align-items: center; min-height: 32px; }
+.footer > a:not(.brand), .text-link, .company-link, .case-link, .personal-link { min-height: 28px; }
+.footer > a:not(.brand) { display: inline-flex; align-items: center; }
+.case-link { padding-block: 5px; }
+.scene-toggle { position: absolute; right: 0; bottom: 130px; z-index: 3; min-height: 36px; padding: 10px 14px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); font: 11px 'Courier New', monospace; cursor: pointer; }
+.scene-toggle:hover { color: var(--accent); border-color: var(--accent); }
+.scene-toggle:disabled { cursor: default; }
+.scene-toggle[hidden] { display: none; }
+@media (max-width: 600px) { .scene-toggle { bottom: 115px; } }
+
 .project-page { padding-block: 50px 80px; }
 .project-breadcrumb { display: flex; gap: 14px; color: var(--muted); font: 11px 'Courier New', monospace; margin-bottom: 28px; }
 .project-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; border-block: 1px solid var(--line); padding: 20px 0; margin-bottom: 42px; }
@@ -274,13 +359,16 @@ h3 { font-size: 25px; line-height: 1.2; font-weight: 500; letter-spacing: -.7px;
 .readme li { margin-block: 8px; }
 .readme a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 .readme blockquote { margin: 24px 0; padding: 8px 24px; border-left: 2px solid var(--violet); background: var(--surface); }
-.readme pre { overflow-x: auto; padding: 24px; background: var(--surface); border: 1px solid var(--line); font-size: 12px; line-height: 1.6; overflow-wrap: normal; }
+.readme pre { width: max-content; min-width: 100%; margin: 0; padding: 24px; background: var(--surface); border: 1px solid var(--line); font-size: 12px; line-height: 1.6; overflow-wrap: normal; }
 .readme code { font-family: 'Courier New', monospace; font-size: .9em; color: var(--ink); background: var(--surface-raised); padding: 2px 4px; }
 .readme pre code { background: none; padding: 0; font-size: inherit; }
-.readme table { display: block; width: 100%; max-width: 100%; overflow-x: auto; border-collapse: collapse; font-size: 13px; }
+.readme table { width: 100%; border-collapse: collapse; font-size: 13px; }
 .readme th, .readme td { text-align: left; border: 1px solid var(--line); padding: 12px 16px; min-width: 140px; }
 .readme th { color: var(--ink); background: var(--surface-raised); }
 .readme td { color: var(--muted); }
+.readme-scroll { max-width: 100%; overflow-x: auto; margin-block: 20px; }
+.readme-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.readme-toc a { display: inline-block; min-height: 28px; }
 .readme img { max-width: 100%; height: auto; }
 .readme-toc { position: sticky; top: 28px; max-height: calc(100vh - 56px); overflow-y: auto; border-left: 1px solid var(--line); padding-left: 22px; }
 .readme-toc p { font: 10px 'Courier New', monospace; letter-spacing: 1.5px; color: var(--accent); margin: 0 0 18px; }
@@ -300,7 +388,7 @@ h3 { font-size: 25px; line-height: 1.2; font-weight: 500; letter-spacing: -.7px;
     <a class="brand" href="../" aria-label="JALLITS home"><svg class="wordmark" width="224" height="58" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 345 90" aria-hidden="true"><g fill="#262b27"><path d="M20 9h37v34c0 15-9 23-24 23H20V51h13c6 0 9-3 9-8V24H20zM5 9h8v15H5z"/><text x="79" y="60" font-family="Arial,Helvetica,sans-serif" font-size="58" font-weight="600" letter-spacing="1.5">JALLITS</text><text x="79" y="82" font-family="Arial,Helvetica,sans-serif" font-size="10" letter-spacing=".9">ENGINEERING &amp; TECHNOLOGY ADVISORY</text></g></svg></a>
     <div class="header-actions"><nav aria-label="Main navigation"><a href="../#services">Services</a><a href="../#approach">Approach</a><a href="../#about">About</a><a class="nav-connect" href="../#connect">Let’s talk <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></nav><button class="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15A9 9 0 0 1 9 4a9 9 0 1 0 11 11Z"/></svg></button></div>
   </header>
-  <main id="main" class="project-page wrap"><div class="project-index"><nav class="project-breadcrumb" aria-label="Breadcrumb"><a href="../">JALLITS</a><span aria-hidden="true">/</span><span>Projects</span></nav><p class="eyebrow">BUILDING IN THE OPEN</p><h1>Open source projects.</h1><p>Explore our Linux projects through their own documentation. Both are currently in planning and design; these READMEs describe proposals, not released applications.</p><div class="project-grid"><article class="project-card"><div class="tags"><span>LINUX</span><span>PLANNING &amp; DESIGN</span></div><h2>Keyringd</h2><p>Read the project’s overview, proposed architecture, roadmap, and contribution guidance.</p><a class="project-link" href="keyringd/">Read the README <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></article><article class="project-card"><div class="tags"><span>LINUX</span><span>PLANNING &amp; DESIGN</span></div><h2>Keyring Manager</h2><p>Read the project’s overview, proposed architecture, roadmap, and contribution guidance.</p><a class="project-link" href="keyring-manager/">Read the README <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></article></div></div></main>
+  <main id="main" class="project-page wrap" tabindex="-1"><div class="project-index"><nav class="project-breadcrumb" aria-label="Breadcrumb"><a href="../">JALLITS</a><span aria-hidden="true">/</span><span>Projects</span></nav><p class="eyebrow">BUILDING IN THE OPEN</p><h1>Open source projects.</h1><p>Explore our Linux projects through their own documentation. Both are currently in planning and design; these READMEs describe proposals, not released applications.</p><div class="project-grid"><article class="project-card"><div class="tags"><span>LINUX</span><span>PLANNING &amp; DESIGN</span></div><h2>Keyringd</h2><p>Read the project’s overview, proposed architecture, roadmap, and contribution guidance.</p><a class="project-link" href="keyringd/">Read the README <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></article><article class="project-card"><div class="tags"><span>LINUX</span><span>PLANNING &amp; DESIGN</span></div><h2>Keyring Manager</h2><p>Read the project’s overview, proposed architecture, roadmap, and contribution guidance.</p><a class="project-link" href="keyring-manager/">Read the README <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a></article></div></div></main>
   <footer class="footer wrap"><a class="brand" href="../" aria-label="Back to top"><svg class="wordmark" width="190" height="50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 345 90" aria-hidden="true"><g fill="#262b27"><path d="M20 9h37v34c0 15-9 23-24 23H20V51h13c6 0 9-3 9-8V24H20zM5 9h8v15H5z"/><text x="79" y="60" font-family="Arial,Helvetica,sans-serif" font-size="58" font-weight="600" letter-spacing="1.5">JALLITS</text><text x="79" y="82" font-family="Arial,Helvetica,sans-serif" font-size="10" letter-spacing=".9">ENGINEERING &amp; TECHNOLOGY ADVISORY</text></g></svg></a><p>Clarity. Accountability. Sustainable execution.</p><a href="https://github.com/jallits/jallits.github.io">View this site on GitHub <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a><a href="../engagements/">Working together</a><a href="../case-studies/">Engagement scenarios</a><a href="../llms.txt">llms.txt</a></footer>
   <script>
     (() => {

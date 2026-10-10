@@ -28,7 +28,8 @@ or backend services. See `assets/vendor/README.md` for provenance and licensing.
 
 The theme toggle stores your light/dark preference locally; dark is the default.
 The inline geometric fallback remains visible when scripts, WebGL, or external
-assets are unavailable. Reduced motion renders a still scene; animation pauses
+assets are unavailable. A visible pause/resume control is available for decorative motion. Reduced
+motion renders a still scene and disables the motion control; animation pauses
 when the hero is offscreen or the browser tab is hidden.
 
 Edit `assets/scene.js` for the Three.js scene. Run the local HTTP server to test
@@ -159,3 +160,26 @@ responsibilities, and publicly inspectable planning-stage project work. Dan’s
 personal website is the destination for professional background. Do not add
 employers, titles, years of experience, certifications, or measured client
 results without verified details and appropriate publication permission.
+
+## Accessibility and search metadata
+
+Pages provide keyboard skip links, named navigation, visible focus styles,
+light/dark contrast, and keyboard-accessible scrolling tables and diagrams.
+Decorative WebGL is hidden from assistive technology and can be paused;
+reduced-motion preferences keep it still. No service content depends on WebGL.
+
+Each page has a distinct title and description, canonical URL, social image
+alternative text, and factual JSON-LD. Structured data describes JALLITS,
+its services, the website, Dan Jallits, and page breadcrumbs without invented
+reviews, credentials, or client results. The sitemap lists canonical routes.
+
+After changing homepage metadata or service definitions, refresh its JSON-LD:
+
+```sh
+python3 scripts/generate_site_metadata.py
+```
+
+Then regenerate project, scenario, and engagement pages to propagate shared
+styles and metadata. Validate keyboard navigation, both themes, narrow layouts,
+200% text zoom, scroll regions, pause/resume, reduced motion, and JSON-LD.
+Automated accessibility audits are useful checks, not a complete certification.

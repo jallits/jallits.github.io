@@ -99,7 +99,11 @@ if (renderer) {
   scene.add(trails);
 
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const toggle = document.querySelector('.scene-toggle');
+  let paused = false;
   let frame = 0;
+  let elapsed = 0;
+  let lastTimestamp = null;
   let visible = true;
   let contextLost = false;
   const pointer = new THREE.Vector2();
@@ -133,8 +137,10 @@ if (renderer) {
     render();
   };
   const animate = (timestamp) => {
-    if (motion.matches || !visible || document.hidden || contextLost) { frame = 0; return; }
-    const time = timestamp * 0.001;
+    if (motion.matches || paused || !visible || document.hidden || contextLost) { frame = 0; return; }
+    if (lastTimestamp !== null) elapsed += Math.min((timestamp - lastTimestamp) * 0.001, 0.1);
+    lastTimestamp = timestamp;
+    const time = elapsed;
     rings[0].rotation.z = 0.2 + time * 0.08;
     rings[1].rotation.z = -0.4 - time * 0.06;
     rings[2].rotation.y = 0.6 + time * 0.07;
@@ -148,9 +154,22 @@ if (renderer) {
   const resume = () => {
     if (frame) cancelAnimationFrame(frame);
     frame = 0;
-    if (!motion.matches && visible && !document.hidden && !contextLost) frame = requestAnimationFrame(animate);
+    lastTimestamp = null;
+    if (!motion.matches && !paused && visible && !document.hidden && !contextLost) frame = requestAnimationFrame(animate);
     else if (!contextLost) render();
   };
+  const updateMotionControl = () => {
+    toggle.hidden = contextLost;
+    toggle.disabled = motion.matches;
+    toggle.setAttribute('aria-pressed', String(paused || motion.matches));
+    toggle.setAttribute('aria-label', motion.matches ? 'Animation paused for reduced motion' : paused ? 'Resume decorative animation' : 'Pause decorative animation');
+    toggle.textContent = motion.matches ? 'Motion reduced' : paused ? 'Resume motion' : 'Pause motion';
+  };
+  toggle.addEventListener('click', () => {
+    paused = !paused;
+    updateMotionControl();
+    resume();
+  });
   new ResizeObserver(resize).observe(container);
   new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; resume(); }).observe(container);
   document.querySelector('.hero').addEventListener('pointermove', (event) => {
@@ -160,14 +179,14 @@ if (renderer) {
   document.querySelector('.hero').addEventListener('pointerleave', () => pointer.set(0, 0));
   window.addEventListener('themechange', theme);
   document.addEventListener('visibilitychange', resume);
-  motion.addEventListener('change', resume);
+  motion.addEventListener('change', () => { updateMotionControl(); resume(); });
   canvas.addEventListener('webglcontextlost', (event) => {
-    event.preventDefault(); contextLost = true; container.dataset.renderer = 'static'; resume();
+    event.preventDefault(); contextLost = true; container.dataset.renderer = 'static'; updateMotionControl(); resume();
   });
   canvas.addEventListener('webglcontextrestored', () => {
-    contextLost = false; container.dataset.renderer = 'webgl'; theme(); resize(); resume();
+    contextLost = false; container.dataset.renderer = 'webgl'; updateMotionControl(); theme(); resize(); resume();
   });
-  theme(); resize();
+  updateMotionControl(); theme(); resize();
   container.dataset.renderer = 'webgl';
   resume();
 }
