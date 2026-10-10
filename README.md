@@ -1,6 +1,6 @@
 # Jallits website
 
-A responsive, dependency-free advisory website for Jallits, hosted on GitHub
+A responsive engineering advisory website for Jallits, hosted on GitHub
 Pages at **https://www.jallits.com**. It markets Engineering Effectiveness
 Assessments, Fractional Engineering Leadership, Platform Modernization,
 DevSecOps Transformation, and Technology Strategy Advisory. LinkedIn provides
@@ -22,8 +22,17 @@ python3 -m http.server 8000 --bind 127.0.0.1
 Open port 8000 in a local browser. No package installation or build is required.
 Edit `index.html`, including its inline stylesheet. Styles are embedded so
 HTML file previews do not depend on resolving a separate CSS request.
-The site uses system fonts and no
-third-party scripts, analytics, or runtime services.
+The site uses system fonts and locally vendored Three.js 0.180.0 for its
+decorative WebGL scene. There are no third-party runtime requests, analytics,
+or backend services. See `assets/vendor/README.md` for provenance and licensing.
+
+The theme toggle stores your light/dark preference locally; dark is the default.
+The inline geometric fallback remains visible when scripts, WebGL, or external
+assets are unavailable. Reduced motion renders a still scene; animation pauses
+when the hero is offscreen or the browser tab is hidden.
+
+Edit `assets/scene.js` for the Three.js scene. Run the local HTTP server to test
+JavaScript modules; opening the HTML as a file still shows the styled fallback.
 
 ## Publish
 
