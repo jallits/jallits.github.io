@@ -22,6 +22,7 @@ AI is evaluated selectively across these services. The focus is measured value, 
 - [Services](https://www.jallits.com/#services): Advisory offerings and where AI can contribute.
 - [Approach](https://www.jallits.com/#approach): Understand the system, align priorities, and build sustainable execution.
 - [About JALLITS](https://www.jallits.com/#about): Company background and links to Dan Jallits.
+- [Leadership scope and technical perspective](https://www.jallits.com/#leadership-scope): Advisory environments and responsibilities drawn from the stated service positioning, plus links to public project documentation and Dan’s personal background. No employer history, credentials, years of experience, or client results are asserted.
 - [Contact](https://www.jallits.com/#connect): Connect with Dan on LinkedIn about an engagement.
 - [Open source projects](https://www.jallits.com/projects/): Project documentation directory.
 - [Sitemap](https://www.jallits.com/sitemap.xml): Canonical site URLs.

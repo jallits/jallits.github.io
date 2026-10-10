@@ -151,3 +151,11 @@ python3 scripts/generate_engagements.py
 Regenerate this page together with project and scenario pages after changing
 the shared homepage shell. Python 3 is required; Pandoc is needed only for
 regenerating the project README pages.
+
+## Leadership scope and credibility
+
+The homepage About section describes advisory environments, leadership
+responsibilities, and publicly inspectable planning-stage project work. Dan’s
+personal website is the destination for professional background. Do not add
+employers, titles, years of experience, certifications, or measured client
+results without verified details and appropriate publication permission.
