@@ -80,3 +80,27 @@ Use Conventional Commits, with a short imperative subject, such as
 `feat(site): add project overview`. Keep the subject under 50 characters when
 practical, omit the trailing period, and separate an explanatory body with a
 blank line. Wrap body text at 72 characters and explain what changed and why.
+
+## Project documentation pages
+
+- `/projects/` lists the projects.
+- `/projects/keyringd/` renders the Keyringd README.
+- `/projects/keyring-manager/` renders the Keyring Manager README.
+
+Each page includes the complete README from the commit recorded in
+`projects/sources.json`. The unmodified Markdown snapshots sit alongside the
+pages as `README.md`. These are static snapshots, not live GitHub fetches.
+Status statements and proposed features are preserved as written upstream.
+
+To refresh documentation, retrieve each project's README at a verified commit,
+replace its Markdown snapshot, update `projects/sources.json`, then run:
+
+```sh
+python3 scripts/generate_project_pages.py
+```
+
+Regeneration requires Pandoc and Python 3. Run it again after changing the
+homepage's shared styles, header, footer, or theme scripts. The committed HTML
+needs no build tools at runtime or during Pages deployment. Relative README
+links and images resolve to the pinned source repository; in-page anchors stay
+on the documentation page.

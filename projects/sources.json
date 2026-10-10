@@ -1,0 +1,12 @@
+{
+  "keyringd": {
+    "name": "Keyringd",
+    "repository": "https://github.com/jallits/keyringd",
+    "commit": "b09185b0c793b8ea500d09a06e3f87f4d94466d1"
+  },
+  "keyring-manager": {
+    "name": "Keyring Manager",
+    "repository": "https://github.com/jallits/keyring-manager",
+    "commit": "6881b1f6e88a6bfd4f117456a73093aa597afbc4"
+  }
+}
