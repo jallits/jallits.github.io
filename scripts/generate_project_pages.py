@@ -14,7 +14,7 @@ from urllib.parse import urljoin, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 home = (ROOT / 'index.html').read_text()
-styles = re.search(r'<style>(.*?)</style>', home, re.S)[1]
+styles = re.search(r'<style>(.*?)</style>', home, re.S)[1].strip()
 header = re.search(r'<header\b.*?</header>', home, re.S)[0]
 footer = re.search(r'<footer\b.*?</footer>', home, re.S)[0]
 theme_scripts = re.findall(r'<script>(.*?)</script>', home, re.S)
