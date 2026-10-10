@@ -1,6 +1,6 @@
-# Jallits website
+# JALLITS website
 
-A responsive engineering advisory website for Jallits, hosted on GitHub
+A responsive engineering advisory website for JALLITS, hosted on GitHub
 Pages at **https://www.jallits.com**. It markets Engineering Effectiveness
 Assessments, Fractional Engineering Leadership, Platform Modernization,
 DevSecOps Transformation, and Technology Strategy Advisory. LinkedIn provides
@@ -53,6 +53,10 @@ of the default branch if branch deployment is preferred. No Jekyll processing
 is needed; `.nojekyll` is included.
 
 ## Content and identity
+
+Refer to the business as **JALLITS** in copy, metadata, and accessible labels.
+Refer to the individual as **Dan** or **Dan Jallits**. Keep URLs and account
+handles in their existing case.
 
 - Company: https://www.linkedin.com/company/jallits
 - Open source: https://github.com/jallits
