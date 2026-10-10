@@ -113,3 +113,22 @@ HTML metadata. The Markdown guide summarizes JALLITS, the five services, and
 project documentation while distinguishing planned projects from releases and
 Dan Jallits from the business. Keep it current when offerings or routes change.
 The Pages workflow publishes both discovery files.
+
+## Illustrative engagement scenarios
+
+`/case-studies/` contains two scenarios for each of the five services. The
+homepage service cards link to their respective sections. The examples are
+explicitly illustrative, not anonymized client histories or verified results.
+They describe proposed approaches, intended deliverables, and what to measure.
+
+Edit `case-studies/scenarios.json` and run:
+
+```sh
+python3 scripts/generate_case_studies.py
+```
+
+This generator uses the shared page shell from `generate_project_pages.py`.
+It needs Python 3, but not Pandoc. Regenerate both types of pages after changing
+the shared homepage styles, header, footer, or theme scripts. Before replacing
+an example with a real case study, substantiate the engagement, role, actions,
+and outcomes and confirm permission to publish the anonymized information.

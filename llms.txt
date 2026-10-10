@@ -26,6 +26,10 @@ AI is evaluated selectively across these services. The focus is measured value, 
 - [Open source projects](https://www.jallits.com/projects/): Project documentation directory.
 - [Sitemap](https://www.jallits.com/sitemap.xml): Canonical site URLs.
 
+## Illustrative engagement scenarios
+
+- [Engagement scenarios](https://www.jallits.com/case-studies/): Two illustrative scenarios per service, covering challenges, proposed approaches, selective AI use, intended deliverables, and evaluation measures. These are not completed engagements, anonymized client histories, or verified results.
+
 ## Project documentation
 
 Both projects are currently in planning and design. Their READMEs describe proposed capabilities and technology choices, not released applications or production-ready credential software. Website documentation is a static snapshot of the upstream README at the commit recorded in projects/sources.json.

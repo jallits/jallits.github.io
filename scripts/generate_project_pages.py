@@ -74,8 +74,9 @@ class Headings(HTMLParser):
             self.current = None
 
 
-def shell(title, description, canonical_path, body, base):
+def shell(title, description, canonical_path, body, base, extra_css=""):
     def navigation(fragment):
+        fragment = fragment.replace('href="case-studies/"', f'href="{base}case-studies/"')
         fragment = fragment.replace('href="llms.txt"', f'href="{base}llms.txt"')
         return re.sub(r'href="#([^\"]*)"', lambda m: 'href="' + base + ('#' + m[1] if m[1] else '') + '"', fragment)
     return f'''<!doctype html>
@@ -96,7 +97,7 @@ def shell(title, description, canonical_path, body, base):
   <meta property="og:image" content="https://www.jallits.com/assets/social-card.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="{base}assets/mark.svg" type="image/svg+xml">
-  <style>{styles}\n{project_css}</style>
+  <style>{styles}\n{project_css}{extra_css}</style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -108,32 +109,38 @@ def shell(title, description, canonical_path, body, base):
 </html>
 '''
 
-for slug, source in sources.items():
-    directory = ROOT / 'projects' / slug
-    fragment = subprocess.run(
-        ['pandoc', '--from=gfm', '--to=html5', '--wrap=none', '--no-highlight', str(directory / 'README.md')],
-        check=True, capture_output=True, text=True,
-    ).stdout
-    # Relative repository links belong to their source repository, not this site.
-    def resolve(match):
-        attribute, quote, url = match.groups()
-        if url.startswith('#') or urlsplit(url).scheme or url.startswith('//'):
-            return match[0]
-        if attribute == 'src':
-            base = source['repository'].replace('github.com', 'raw.githubusercontent.com') + '/' + source['commit'] + '/'
-        else:
-            base = source['repository'] + '/blob/' + source['commit'] + '/'
-        return f'{attribute}={quote}{escape(urljoin(base, url), quote=True)}{quote}'
-    fragment = re.sub(r'\b(href|src)=("|\')(.*?)\2', resolve, fragment)
-    headings = Headings()
-    headings.feed(fragment)
-    toc = ''.join(f'<li><a href="#{escape(id, quote=True)}">{escape(text)}</a></li>' for id, text in headings.items)
-    body = f'''<nav class="project-breadcrumb" aria-label="Breadcrumb"><a href="../../">JALLITS</a><span aria-hidden="true">/</span><a href="../">Projects</a><span aria-hidden="true">/</span><span>{escape(source['name'])}</span></nav>
-<div class="project-tools"><a class="button" href="{source['repository']}">View on GitHub {arrow}</a><a class="text-link" href="{source['repository']}/blob/{source['commit']}/README.md">README source {arrow}</a><p>README SNAPSHOT / {source['commit'][:7]}</p></div>
-<div class="readme-layout"><article class="readme" aria-label="{escape(source['name'])} README">{fragment}</article><nav class="readme-toc" aria-label="README contents"><p>ON THIS PAGE</p><ul>{toc}</ul></nav></div>'''
-    (directory / 'index.html').write_text(shell(source['name'], f"Read the {source['name']} project README, including its planning status, architecture, roadmap, and contribution guidance.", f'projects/{slug}/', body, '../../'))
 
-cards = ''.join(f'''<article class="project-card"><div class="tags"><span>LINUX</span><span>PLANNING &amp; DESIGN</span></div><h2>{escape(source['name'])}</h2><p>Read the project’s overview, proposed architecture, roadmap, and contribution guidance.</p><a class="project-link" href="{slug}/">Read the README {arrow}</a></article>''' for slug, source in sources.items())
-body = f'''<div class="project-index"><nav class="project-breadcrumb" aria-label="Breadcrumb"><a href="../">JALLITS</a><span aria-hidden="true">/</span><span>Projects</span></nav><p class="eyebrow">BUILDING IN THE OPEN</p><h1>Open source projects.</h1><p>Explore our Linux projects through their own documentation. Both are currently in planning and design; these READMEs describe proposals, not released applications.</p><div class="project-grid">{cards}</div></div>'''
-(ROOT / 'projects/index.html').write_text(shell('Open source projects', 'Read the Keyringd and Keyring Manager project documentation from JALLITS.', 'projects/', body, '../'))
-print('Generated project directory and both README pages.')
+def main():
+    for slug, source in sources.items():
+        directory = ROOT / 'projects' / slug
+        fragment = subprocess.run(
+            ['pandoc', '--from=gfm', '--to=html5', '--wrap=none', '--no-highlight', str(directory / 'README.md')],
+            check=True, capture_output=True, text=True,
+        ).stdout
+        # Relative repository links belong to their source repository, not this site.
+        def resolve(match):
+            attribute, quote, url = match.groups()
+            if url.startswith('#') or urlsplit(url).scheme or url.startswith('//'):
+                return match[0]
+            if attribute == 'src':
+                base = source['repository'].replace('github.com', 'raw.githubusercontent.com') + '/' + source['commit'] + '/'
+            else:
+                base = source['repository'] + '/blob/' + source['commit'] + '/'
+            return f'{attribute}={quote}{escape(urljoin(base, url), quote=True)}{quote}'
+        fragment = re.sub(r'\b(href|src)=("|\')(.*?)\2', resolve, fragment)
+        headings = Headings()
+        headings.feed(fragment)
+        toc = ''.join(f'<li><a href="#{escape(id, quote=True)}">{escape(text)}</a></li>' for id, text in headings.items)
+        body = f'''<nav class="project-breadcrumb" aria-label="Breadcrumb"><a href="../../">JALLITS</a><span aria-hidden="true">/</span><a href="../">Projects</a><span aria-hidden="true">/</span><span>{escape(source['name'])}</span></nav>
+    <div class="project-tools"><a class="button" href="{source['repository']}">View on GitHub {arrow}</a><a class="text-link" href="{source['repository']}/blob/{source['commit']}/README.md">README source {arrow}</a><p>README SNAPSHOT / {source['commit'][:7]}</p></div>
+    <div class="readme-layout"><article class="readme" aria-label="{escape(source['name'])} README">{fragment}</article><nav class="readme-toc" aria-label="README contents"><p>ON THIS PAGE</p><ul>{toc}</ul></nav></div>'''
+        (directory / 'index.html').write_text(shell(source['name'], f"Read the {source['name']} project README, including its planning status, architecture, roadmap, and contribution guidance.", f'projects/{slug}/', body, '../../'))
+
+    cards = ''.join(f'''<article class="project-card"><div class="tags"><span>LINUX</span><span>PLANNING &amp; DESIGN</span></div><h2>{escape(source['name'])}</h2><p>Read the project’s overview, proposed architecture, roadmap, and contribution guidance.</p><a class="project-link" href="{slug}/">Read the README {arrow}</a></article>''' for slug, source in sources.items())
+    body = f'''<div class="project-index"><nav class="project-breadcrumb" aria-label="Breadcrumb"><a href="../">JALLITS</a><span aria-hidden="true">/</span><span>Projects</span></nav><p class="eyebrow">BUILDING IN THE OPEN</p><h1>Open source projects.</h1><p>Explore our Linux projects through their own documentation. Both are currently in planning and design; these READMEs describe proposals, not released applications.</p><div class="project-grid">{cards}</div></div>'''
+    (ROOT / 'projects/index.html').write_text(shell('Open source projects', 'Read the Keyringd and Keyring Manager project documentation from JALLITS.', 'projects/', body, '../'))
+    print('Generated project directory and both README pages.')
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,112 @@
+[
+  {
+    "slug": "engineering-effectiveness-assessments",
+    "service": "Engineering Effectiveness Assessments",
+    "cases": [
+      {
+        "title": "Finding the constraint behind missed commitments",
+        "scenario": "A growing software organization adds engineers, but delivery remains unpredictable. Work waits between teams, priorities change midstream, and leaders disagree about whether the problem is capacity, architecture, or planning.",
+        "approach": "Map work from request to production, interview engineering and business stakeholders, and review dependency queues, rework, and ownership. Establish a baseline, distinguish waiting time from active work, and prioritize a small set of operational changes before recommending more headcount.",
+        "ai": "Evaluate an AI-assisted workflow only if the assessment identifies a task it could improve. Faster code generation is unlikely to help when approval queues and unclear priorities are the main constraints.",
+        "outcome": "A shared diagnosis, a delivery baseline, and a prioritized improvement roadmap with owners and review checkpoints.",
+        "evidence": "Track cycle-time distribution, blocked-work age, unplanned work, and commitment reliability. Compare changes against the baseline rather than treating activity or lines of code as effectiveness."
+      },
+      {
+        "title": "Testing whether AI assistance improves engineering flow",
+        "scenario": "An engineering team wants to adopt AI coding tools. Leaders expect faster delivery, while reviewers are concerned about correctness, security, and additional verification effort.",
+        "approach": "Select a bounded workflow such as drafting tests for an existing component. Establish quality and delivery baselines, agree on review and data-handling rules, and compare assisted work with the existing process. Assess adoption friction and the full cost of verification.",
+        "ai": "Treat AI assistance as a hypothesis to test. Retain human review and normal security controls, and stop or narrow the pilot if review burden or defects outweigh any benefit.",
+        "outcome": "An evidence-based adopt, revise, or stop recommendation, with clear operating conditions and team guidance.",
+        "evidence": "Measure review time, rework, escaped defects, task completion time, and developer experience. Account for task complexity and avoid drawing broad conclusions from a small pilot."
+      }
+    ]
+  },
+  {
+    "slug": "fractional-engineering-leadership",
+    "service": "Fractional Engineering Leadership",
+    "cases": [
+      {
+        "title": "Restoring direction during a leadership transition",
+        "scenario": "An organization needs engineering leadership during a transition. Delivery priorities are unclear, managers escalate routine decisions, and business leaders lack a reliable view of execution risk.",
+        "approach": "Establish a decision cadence, clarify ownership and escalation paths, and align the delivery plan with business priorities. Coach engineering managers, surface risks early, and document responsibilities and handoff plans for the longer-term leadership structure.",
+        "ai": "Use approved AI tools selectively to draft summaries or organize non-sensitive planning material. Decisions about people, priorities, and accountability remain with leadership.",
+        "outcome": "Clearer ownership, a visible execution plan, and leadership practices that the organization can sustain beyond the engagement.",
+        "evidence": "Review decision turnaround, unresolved risks, priority churn, manager feedback, and delivery predictability. Validate that teams can operate without continuing dependence on the fractional leader."
+      },
+      {
+        "title": "Scaling teams without scaling coordination overhead",
+        "scenario": "A software organization is growing from a small team into several teams. Shared components have no clear owners, cross-team commitments are fragile, and coordination meetings consume increasing amounts of engineering time.",
+        "approach": "Review team boundaries, platform responsibilities, and shared dependencies. Agree on ownership and collaboration contracts, strengthen manager decision-making, and introduce a lightweight planning cadence that makes cross-team obligations explicit.",
+        "ai": "Create practical AI adoption guidance and team enablement where useful. Tool access does not replace healthy team boundaries, manager development, or clear ownership.",
+        "outcome": "A scalable operating model with explicit responsibilities and fewer avoidable handoffs.",
+        "evidence": "Track dependency wait time, meeting burden, ownership gaps, cross-team delivery reliability, and manager autonomy. Check whether coordination improves without introducing unnecessary governance."
+      }
+    ]
+  },
+  {
+    "slug": "platform-modernization",
+    "service": "Platform Modernization",
+    "cases": [
+      {
+        "title": "Modernizing a legacy platform while keeping delivery moving",
+        "scenario": "An established product depends on a tightly coupled platform. Routine changes require broad regression testing, operational knowledge is concentrated in a few people, and a full rewrite would put ongoing delivery at risk.",
+        "approach": "Map critical capabilities and dependencies, establish behavioral tests and observability, and identify seams for incremental change. Prioritize modernization slices by business value and risk, with rollback plans and explicit retirement criteria for replaced components.",
+        "ai": "Use AI to draft code explanations, documentation, or candidate tests where data policies permit. Engineers validate those outputs against the running system; generated analysis is not an architectural decision.",
+        "outcome": "A staged modernization roadmap that supports product delivery and reduces reliance on undocumented platform knowledge.",
+        "evidence": "Measure change lead time in migrated areas, regression escapes, rollback effectiveness, and dependency reduction. Confirm that old paths are actually retired rather than accumulating parallel complexity."
+      },
+      {
+        "title": "Building a platform that teams can operate with confidence",
+        "scenario": "Several teams maintain inconsistent deployment and runtime configurations. Reliability issues are hard to diagnose, onboarding is slow, and platform changes require bespoke coordination across each service.",
+        "approach": "Assess common needs, define a small supported platform path, and establish ownership, service expectations, and observability standards. Pilot the path with a representative team, incorporate feedback, and plan incremental adoption rather than a forced migration.",
+        "ai": "Evaluate AI-assisted configuration review and documentation drafting. Validate generated configuration with existing tests and controls; a useful platform starts with sound interfaces and operational ownership.",
+        "outcome": "A maintainable platform direction, clear operating responsibilities, and an adoption plan informed by real team needs.",
+        "evidence": "Track onboarding effort, platform adoption, configuration drift, diagnostic time, and support burden. Assess whether the supported path reduces work for both product teams and platform maintainers."
+      }
+    ]
+  },
+  {
+    "slug": "devsecops-transformation",
+    "service": "DevSecOps Transformation",
+    "cases": [
+      {
+        "title": "Removing avoidable friction from the release path",
+        "scenario": "An organization releases infrequently because deployment steps are manual, test feedback is unreliable, and security review happens late. Each release becomes a coordination event rather than a repeatable process.",
+        "approach": "Map the release path, improve test reliability, and automate repeatable build and deployment steps. Move appropriate security checks earlier, establish change-risk criteria, and rehearse rollback and recovery procedures with development and operations.",
+        "ai": "Pilot AI-assisted test drafting or security finding triage where outputs can be verified. Keep approvals and security controls grounded in risk; AI-generated checks do not establish coverage or safety by themselves.",
+        "outcome": "A more repeatable release workflow with earlier feedback, explicit controls, and practiced recovery paths.",
+        "evidence": "Track deployment lead time, pipeline reliability, change failure rate, recovery time, and security finding age. Evaluate delivery speed alongside stability and control effectiveness."
+      },
+      {
+        "title": "Turning incident response into operational improvement",
+        "scenario": "A software organization experiences recurring incidents. Alerts are noisy, runbooks are inconsistent, and post-incident actions compete with feature work without clear ownership.",
+        "approach": "Review incident patterns and escalation paths, tune alerts around actionable signals, and clarify response roles. Improve service observability, practice incident scenarios, and make follow-up work visible in normal prioritization rather than a separate backlog that never moves.",
+        "ai": "Use AI to draft incident timelines or suggest investigation paths from approved data. Responders verify evidence and retain decision authority; sensitive logs and production access stay within established controls.",
+        "outcome": "A clearer response model and a practical feedback loop from incidents to engineering priorities.",
+        "evidence": "Measure actionable alert volume, time to diagnose and recover, recurrence, and completion of high-value follow-up actions. Avoid using faster incident closure as a substitute for resolving causes."
+      }
+    ]
+  },
+  {
+    "slug": "technology-strategy-advisory",
+    "service": "Technology Strategy Advisory",
+    "cases": [
+      {
+        "title": "Connecting technology investments to business priorities",
+        "scenario": "Business and engineering leaders have competing modernization proposals. Teams are already committed to delivery work, and investment decisions lack a shared view of value, dependencies, operating cost, and execution risk.",
+        "approach": "Clarify business outcomes and constraints, assess the technology portfolio, and compare options with explicit assumptions. Build a sequenced roadmap that accounts for organizational capacity and defines decision owners, review points, and conditions for changing direction.",
+        "ai": "Compare AI-enabled options with conventional automation, process improvement, and doing less. Evaluate total cost and governance needs rather than treating AI adoption as a strategy in itself.",
+        "outcome": "A shared investment rationale and a practical technology roadmap tied to business outcomes.",
+        "evidence": "Review progress against agreed outcomes, operating cost, dependency resolution, and changes in risk. Revisit assumptions when the business context changes instead of defending a fixed roadmap."
+      },
+      {
+        "title": "Choosing a responsible path from AI interest to evidence",
+        "scenario": "Leadership sees potential for AI across engineering and operations but has many competing use cases. Data sensitivity, vendor commitments, ongoing evaluation effort, and operating costs are not yet well understood.",
+        "approach": "Inventory candidate workflows, identify data and accountability boundaries, and rank use cases by value, feasibility, and risk. Select a bounded pilot, define acceptance and exit criteria, and plan how the organization would operate or retire the capability.",
+        "ai": "Include a no-AI option in the comparison. Require a supported business case, human accountability, and an operating model before expanding beyond the pilot.",
+        "outcome": "An evidence-based AI decision and a governance approach proportionate to the chosen use case.",
+        "evidence": "Measure task quality, human verification effort, total cost, adoption, and failure handling against the existing workflow. Treat an informed decision not to adopt as a valid outcome."
+      }
+    ]
+  }
+]
