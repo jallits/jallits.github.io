@@ -6,7 +6,7 @@ Assessments, Fractional Engineering Leadership, Platform Modernization,
 DevSecOps Transformation, and Technology Strategy Advisory. LinkedIn provides
 the contact path; open source work is supporting content.
 
-The new identity pairs a geometric J symbol with the full Jallits wordmark
+The new identity pairs a geometric J symbol with the uppercase JALLITS wordmark
 and an engineering and technology advisory descriptor. Reusable logo and
 social sharing assets live in `assets/`. The header and footer embed the SVG
 wordmark directly so HTML previews do not need a separate logo request.
@@ -54,7 +54,8 @@ is needed; `.nojekyll` is included.
 - Personal X: https://x.com/danjallits
 - Personal code: https://github.com/djallits
 
-AI guidance is specific to assessments, modernization, DevSecOps, and strategy.
+AI guidance covers all five services, including responsible adoption under
+fractional engineering leadership.
 It emphasizes measured value, simpler alternatives, and human accountability.
 
 Keep project descriptions aligned with their repository documentation. The
