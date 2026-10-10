@@ -1,0 +1,52 @@
+[
+  {
+    "slug": "engineering-effectiveness-assessments",
+    "name": "Engineering Effectiveness Assessments",
+    "model": "A focused diagnostic engagement",
+    "fit": "Delivery is unpredictable, improvement efforts are scattered, or leaders need to understand whether the main constraint is process, architecture, ownership, or capacity.",
+    "work": "Stakeholder discussions, a review of engineering practices and operational maturity, and a map of work from request to production. Available evidence is used to distinguish symptoms from constraints and establish a practical baseline.",
+    "deliverables": ["A findings brief with the key constraints and supporting evidence", "A baseline of relevant delivery and quality measures", "A prioritized improvement roadmap with suggested owners and dependencies", "A leadership readout and recommended next steps"],
+    "inputs": "Engineering and business stakeholder participation, an outline of current priorities, and agreed access to relevant workflow and operational evidence.",
+    "boundary": "An assessment establishes direction; implementation support can be scoped separately. It is not a security certification or a guarantee of a particular performance improvement."
+  },
+  {
+    "slug": "fractional-engineering-leadership",
+    "name": "Fractional Engineering Leadership",
+    "model": "Embedded leadership at an agreed cadence",
+    "fit": "You need experienced engineering direction during growth, a leadership transition, modernization, or delivery instability without adding permanent executive headcount.",
+    "work": "Work alongside engineering managers and business leadership through recurring planning, decision, and risk reviews. Clarify priorities and responsibilities, coach managers, and guide execution. Availability, decision authority, and escalation paths are agreed at the start.",
+    "deliverables": ["An aligned engineering plan and visible execution priorities", "Clear ownership, decision rights, and escalation paths", "A leadership cadence with risk and progress reviews", "Manager development priorities and a transition or handoff plan"],
+    "inputs": "A committed executive sponsor, access to the leadership team, shared business priorities, and explicit agreement about the fractional leader’s responsibilities.",
+    "boundary": "This is leadership support, not unlimited availability or a substitute for every management role. The engagement should build internal capability and a sustainable operating model."
+  },
+  {
+    "slug": "platform-modernization",
+    "name": "Platform Modernization",
+    "model": "Discovery and roadmap, with scoped execution support",
+    "fit": "Platform constraints are slowing change, operational knowledge is concentrated in a few people, or a modernization effort needs a realistic path that protects ongoing delivery.",
+    "work": "Map capabilities and dependencies, assess maintainability and operational readiness, and compare modernization options. Identify practical migration seams and sequence changes around value, organizational capacity, and risk.",
+    "deliverables": ["A current-state platform and dependency assessment", "Target-state options and documented trade-offs", "A phased modernization roadmap with dependencies and decision points", "Migration, rollback, observability, and ownership considerations"],
+    "inputs": "Platform and product stakeholder participation, architecture context, known constraints, and agreed access to representative technical and operational evidence.",
+    "boundary": "A roadmap does not assume a full rewrite or a particular vendor. Hands-on migration work, platform delivery, and ongoing operations are agreed separately where needed."
+  },
+  {
+    "slug": "devsecops-transformation",
+    "name": "DevSecOps Transformation",
+    "model": "A workflow assessment followed by bounded improvement",
+    "fit": "Releases rely on manual coordination, security feedback arrives late, incident response is inconsistent, or delivery speed and operational stability are in tension.",
+    "work": "Review the path from development to production with development, security, and operations stakeholders. Identify feedback and control gaps, agree on improvement priorities, and define a representative pilot with ownership and evaluation measures.",
+    "deliverables": ["A delivery workflow and control-gap assessment", "A prioritized automation, security, and reliability improvement plan", "A pilot scope with baseline and acceptance criteria", "Operating responsibilities, recovery expectations, and adoption guidance"],
+    "inputs": "Development, security, and operations participation, representative pipeline and incident context, and agreement on what can be piloted safely.",
+    "boundary": "Tooling changes alone do not establish delivery maturity. Production changes, security assurance, and managed operations require explicit scope and appropriate organizational review."
+  },
+  {
+    "slug": "technology-strategy-advisory",
+    "name": "Technology Strategy Advisory",
+    "model": "Decision-focused advisory and roadmap development",
+    "fit": "Technology investments compete for attention, business and engineering priorities are misaligned, or leadership needs a defensible choice between modernization, AI adoption, conventional improvement, and doing less.",
+    "work": "Clarify business objectives and constraints, compare options and assumptions, and assess value, cost, execution risk, and organizational readiness. Align stakeholders on a direction and the conditions that would justify changing it.",
+    "deliverables": ["A decision brief connecting options to business priorities", "Documented trade-offs, assumptions, costs, and execution risks", "A sequenced technology roadmap and investment priorities", "Governance, ownership, and outcome-review recommendations"],
+    "inputs": "Business and engineering leadership participation, current investment priorities, organizational constraints, and available information about costs and dependencies.",
+    "boundary": "Recommendations are grounded in the organization’s context, not a predetermined technology stack. AI pilots and subsequent implementation are scoped only when they support a clear business case."
+  }
+]

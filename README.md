@@ -132,3 +132,22 @@ It needs Python 3, but not Pandoc. Regenerate both types of pages after changing
 the shared homepage styles, header, footer, or theme scripts. Before replacing
 an example with a real case study, substantiate the engagement, role, actions,
 and outcomes and confirm permission to publish the anonymized information.
+
+## Engagement details
+
+`/engagements/` describes when each service fits, its working model, typical
+(not universally guaranteed) deliverables, client participation, and scope
+boundaries. It also explains the first conversation and the terms to agree
+before work begins. There are no invented prices, schedules, or availability
+commitments. Service cards, the contact section, and footers link to the page.
+
+Edit `engagements/services.json` and the introductory/conversation copy in
+`scripts/generate_engagements.py`, then run:
+
+```sh
+python3 scripts/generate_engagements.py
+```
+
+Regenerate this page together with project and scenario pages after changing
+the shared homepage shell. Python 3 is required; Pandoc is needed only for
+regenerating the project README pages.

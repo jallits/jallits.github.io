@@ -76,6 +76,7 @@ class Headings(HTMLParser):
 
 def shell(title, description, canonical_path, body, base, extra_css=""):
     def navigation(fragment):
+        fragment = fragment.replace('href="engagements/"', f'href="{base}engagements/"')
         fragment = fragment.replace('href="case-studies/"', f'href="{base}case-studies/"')
         fragment = fragment.replace('href="llms.txt"', f'href="{base}llms.txt"')
         return re.sub(r'href="#([^\"]*)"', lambda m: 'href="' + base + ('#' + m[1] if m[1] else '') + '"', fragment)
