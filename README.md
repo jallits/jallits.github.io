@@ -19,7 +19,9 @@ python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
 Open port 8000 in a local browser. No package installation or build is required.
-Edit `index.html` and `assets/site.css`. The site uses system fonts and no
+Edit `index.html`, including its inline stylesheet. Styles are embedded so
+HTML file previews do not depend on resolving a separate CSS request.
+The site uses system fonts and no
 third-party scripts, analytics, or runtime services.
 
 ## Publish
