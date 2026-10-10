@@ -104,3 +104,12 @@ homepage's shared styles, header, footer, or theme scripts. The committed HTML
 needs no build tools at runtime or during Pages deployment. Relative README
 links and images resolve to the pinned source repository; in-page anchors stay
 on the documentation page.
+
+## Site discovery
+
+`sitemap.xml` lists the canonical pages and the `/llms.txt` guide. `robots.txt`
+points crawlers to the sitemap. Every page links to `llms.txt` in its footer and
+HTML metadata. The Markdown guide summarizes JALLITS, the five services, and
+project documentation while distinguishing planned projects from releases and
+Dan Jallits from the business. Keep it current when offerings or routes change.
+The Pages workflow publishes both discovery files.

@@ -76,6 +76,7 @@ class Headings(HTMLParser):
 
 def shell(title, description, canonical_path, body, base):
     def navigation(fragment):
+        fragment = fragment.replace('href="llms.txt"', f'href="{base}llms.txt"')
         return re.sub(r'href="#([^\"]*)"', lambda m: 'href="' + base + ('#' + m[1] if m[1] else '') + '"', fragment)
     return f'''<!doctype html>
 <html lang="en" data-theme="dark">
@@ -86,6 +87,7 @@ def shell(title, description, canonical_path, body, base):
   <script>{theme_scripts[0]}</script>
   <title>{escape(title)} — JALLITS</title>
   <meta name="description" content="{escape(description, quote=True)}">
+  <link rel="alternate" type="text/plain" title="JALLITS LLM site guide" href="{base}llms.txt">
   <link rel="canonical" href="https://www.jallits.com/{canonical_path}">
   <meta property="og:type" content="website">
   <meta property="og:title" content="{escape(title, quote=True)} — JALLITS">

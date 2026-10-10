@@ -24,7 +24,7 @@ jobs:
       - name: Prepare website artifact
         run: |
           mkdir _site
-          cp index.html CNAME .nojekyll robots.txt sitemap.xml _site/
+          cp index.html CNAME .nojekyll robots.txt sitemap.xml llms.txt _site/
           cp -R assets projects _site/
       - name: Upload website
         uses: actions/upload-pages-artifact@v3
