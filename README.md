@@ -161,6 +161,19 @@ personal website is the destination for professional background. Do not add
 employers, titles, years of experience, certifications, or measured client
 results without verified details and appropriate publication permission.
 
+## Google Tag Manager and Analytics
+
+Tracking is disabled until an ID is provided in `assets/analytics-config.js`.
+Set `tagManagerId` to a `GTM-...` container ID, or `measurementId` to a `G-...`
+Google Analytics measurement ID. Set only one: when using Tag Manager,
+configure Google Analytics inside that container to avoid duplicate page views.
+
+All six pages load the shared configuration and loader. Empty, malformed, or
+conflicting IDs load no Google scripts. Valid IDs load the appropriate Google
+script asynchronously and initialize its data layer. Configuration changes
+require no page regeneration. This integration requires JavaScript; no
+noscript tracking iframe is installed. No custom events are configured.
+
 ## Accessibility and search metadata
 
 Pages provide keyboard skip links, named navigation, visible focus styles,

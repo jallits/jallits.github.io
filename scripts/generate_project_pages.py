@@ -91,6 +91,8 @@ def shell(title, description, canonical_path, body, base, extra_css=""):
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#06090f">
+  <script defer src="{base}assets/analytics-config.js"></script>
+  <script defer src="{base}assets/analytics.js"></script>
   <script>{theme_scripts[0]}</script>
   <title>{escape(title)} — JALLITS</title>
   <meta name="description" content="{escape(description, quote=True)}">
