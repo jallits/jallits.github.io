@@ -1,0 +1,198 @@
+# JALLITS website
+
+A responsive engineering advisory website for JALLITS, hosted on GitHub
+Pages at **https://www.jallits.com**. It markets Engineering Effectiveness
+Assessments, Fractional Engineering Leadership, Platform Modernization,
+DevSecOps Transformation, and Technology Strategy Advisory. LinkedIn provides
+the contact path; open source work is supporting content.
+
+The new identity pairs a geometric J symbol with the uppercase JALLITS wordmark
+and an engineering and technology advisory descriptor. Reusable logo and
+social sharing assets live in `assets/`. The header and footer embed the SVG
+wordmark directly so HTML previews do not need a separate logo request.
+
+## Develop locally
+
+From the existing repository checkout (no separate worktree is needed):
+
+```sh
+python3 -m http.server 8000 --bind 127.0.0.1
+```
+
+Open port 8000 in a local browser. No package installation or build is required.
+Edit `index.html`, including its inline stylesheet. Styles are embedded so
+HTML file previews do not depend on resolving a separate CSS request.
+The site uses system fonts and locally vendored Three.js 0.180.0 for its
+decorative WebGL scene. There are no third-party runtime requests, analytics,
+or backend services. See `assets/vendor/README.md` for provenance and licensing.
+
+The theme toggle stores your light/dark preference locally; dark is the default.
+The inline geometric fallback remains visible when scripts, WebGL, or external
+assets are unavailable. A visible pause/resume control is available for decorative motion. Reduced
+motion renders a still scene and disables the motion control; animation pauses
+when the hero is offscreen or the browser tab is hidden.
+
+Edit `assets/scene.js` for the Three.js scene. Run the local HTTP server to test
+JavaScript modules; opening the HTML as a file still shows the styled fallback.
+
+## Publish
+
+1. In the repository's **Settings → Pages**, select **GitHub Actions** as the
+   build and deployment source.
+2. Push to `master` (the current default branch) or `main`, or manually run the
+   **Deploy website to GitHub Pages** workflow.
+3. Set the Pages custom domain to `www.jallits.com`. The checked-in `CNAME`
+   records the same domain.
+4. At the DNS provider, add a CNAME record for `www` pointing to
+   `jallits.github.io` (no scheme or path).
+5. When GitHub verifies the DNS and provisions a certificate, enable
+   **Enforce HTTPS**. Verify domain ownership using GitHub's recommended TXT
+   record before directing DNS to Pages.
+
+GitHub Pages also supports serving these static files directly from the root
+of the default branch if branch deployment is preferred. No Jekyll processing
+is needed; `.nojekyll` is included.
+
+## Content and identity
+
+Refer to the business as **JALLITS** in copy, metadata, and accessible labels.
+Refer to the individual as **Dan** or **Dan Jallits**. Keep URLs and account
+handles in their existing case.
+
+- Company: https://www.linkedin.com/company/jallits
+- Open source: https://github.com/jallits
+- Keyringd: https://github.com/jallits/keyringd
+- Keyring Manager: https://github.com/jallits/keyring-manager
+- About Dan Jallits: https://dan.jallits.com/
+- Personal LinkedIn: https://www.linkedin.com/in/djallits
+- Personal X: https://x.com/danjallits
+- Personal code: https://github.com/djallits
+
+AI guidance covers all five services, including responsible adoption under
+fractional engineering leadership.
+It emphasizes measured value, simpler alternatives, and human accountability.
+
+Keep project descriptions aligned with their repository documentation. The
+site does not claim production readiness, license terms, or support guarantees.
+
+## Commits
+
+Use Conventional Commits, with a short imperative subject, such as
+`feat(site): add project overview`. Keep the subject under 50 characters when
+practical, omit the trailing period, and separate an explanatory body with a
+blank line. Wrap body text at 72 characters and explain what changed and why.
+
+## Project documentation pages
+
+- `/projects/` lists the projects.
+- `/projects/keyringd/` renders the Keyringd README.
+- `/projects/keyring-manager/` renders the Keyring Manager README.
+
+Each page includes the complete README from the commit recorded in
+`projects/sources.json`. The unmodified Markdown snapshots sit alongside the
+pages as `README.md`. These are static snapshots, not live GitHub fetches.
+Status statements and proposed features are preserved as written upstream.
+
+To refresh documentation, retrieve each project's README at a verified commit,
+replace its Markdown snapshot, update `projects/sources.json`, then run:
+
+```sh
+python3 scripts/generate_project_pages.py
+```
+
+Regeneration requires Pandoc and Python 3. Run it again after changing the
+homepage's shared styles, header, footer, or theme scripts. The committed HTML
+needs no build tools at runtime or during Pages deployment. Relative README
+links and images resolve to the pinned source repository; in-page anchors stay
+on the documentation page.
+
+## Site discovery
+
+`sitemap.xml` lists the canonical pages and the `/llms.txt` guide. `robots.txt`
+points crawlers to the sitemap. Every page links to `llms.txt` in its footer and
+HTML metadata. The Markdown guide summarizes JALLITS, the five services, and
+project documentation while distinguishing planned projects from releases and
+Dan Jallits from the business. Keep it current when offerings or routes change.
+The Pages workflow publishes both discovery files.
+
+## Illustrative engagement scenarios
+
+`/case-studies/` contains two scenarios for each of the five services. The
+homepage service cards link to their respective sections. The examples are
+explicitly illustrative, not anonymized client histories or verified results.
+They describe proposed approaches, intended deliverables, and what to measure.
+
+Edit `case-studies/scenarios.json` and run:
+
+```sh
+python3 scripts/generate_case_studies.py
+```
+
+This generator uses the shared page shell from `generate_project_pages.py`.
+It needs Python 3, but not Pandoc. Regenerate both types of pages after changing
+the shared homepage styles, header, footer, or theme scripts. Before replacing
+an example with a real case study, substantiate the engagement, role, actions,
+and outcomes and confirm permission to publish the anonymized information.
+
+## Engagement details
+
+`/engagements/` describes when each service fits, its working model, typical
+(not universally guaranteed) deliverables, client participation, and scope
+boundaries. It also explains the first conversation and the terms to agree
+before work begins. There are no invented prices, schedules, or availability
+commitments. Service cards, the contact section, and footers link to the page.
+
+Edit `engagements/services.json` and the introductory/conversation copy in
+`scripts/generate_engagements.py`, then run:
+
+```sh
+python3 scripts/generate_engagements.py
+```
+
+Regenerate this page together with project and scenario pages after changing
+the shared homepage shell. Python 3 is required; Pandoc is needed only for
+regenerating the project README pages.
+
+## Leadership scope and credibility
+
+The homepage About section describes advisory environments, leadership
+responsibilities, and publicly inspectable planning-stage project work. Dan’s
+personal website is the destination for professional background. Do not add
+employers, titles, years of experience, certifications, or measured client
+results without verified details and appropriate publication permission.
+
+## Google Tag Manager and Analytics
+
+Tracking is disabled until an ID is provided in `assets/analytics-config.js`.
+Set `tagManagerId` to a `GTM-...` container ID, or `measurementId` to a `G-...`
+Google Analytics measurement ID. Set only one: when using Tag Manager,
+configure Google Analytics inside that container to avoid duplicate page views.
+
+All six pages load the shared configuration and loader. Empty, malformed, or
+conflicting IDs load no Google scripts. Valid IDs load the appropriate Google
+script asynchronously and initialize its data layer. Configuration changes
+require no page regeneration. This integration requires JavaScript; no
+noscript tracking iframe is installed. No custom events are configured.
+
+## Accessibility and search metadata
+
+Pages provide keyboard skip links, named navigation, visible focus styles,
+light/dark contrast, and keyboard-accessible scrolling tables and diagrams.
+Decorative WebGL is hidden from assistive technology and can be paused;
+reduced-motion preferences keep it still. No service content depends on WebGL.
+
+Each page has a distinct title and description, canonical URL, social image
+alternative text, and factual JSON-LD. Structured data describes JALLITS,
+its services, the website, Dan Jallits, and page breadcrumbs without invented
+reviews, credentials, or client results. The sitemap lists canonical routes.
+
+After changing homepage metadata or service definitions, refresh its JSON-LD:
+
+```sh
+python3 scripts/generate_site_metadata.py
+```
+
+Then regenerate project, scenario, and engagement pages to propagate shared
+styles and metadata. Validate keyboard navigation, both themes, narrow layouts,
+200% text zoom, scroll regions, pause/resume, reduced motion, and JSON-LD.
+Automated accessibility audits are useful checks, not a complete certification.

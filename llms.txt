@@ -1,0 +1,58 @@
+# JALLITS
+
+> JALLITS provides engineering and technology advisory services to organizations navigating growth, modernization pressure, delivery instability, and organizational complexity.
+
+JALLITS partners with engineering and business leadership to improve engineering effectiveness, modernize platforms, and restore delivery predictability. Its approach emphasizes clarity, accountability, sustainable execution, and measurable business outcomes. Experienced leadership is available without requiring permanent executive headcount.
+
+JALLITS is the business entity. Dan Jallits is the individual; his personal website is separate from the company website.
+
+## Services
+
+- Engineering Effectiveness Assessments: assess delivery constraints, engineering practices, team alignment, and operational maturity; establish a baseline and prioritize improvements.
+- Fractional Engineering Leadership: provide direction, accountability, organizational alignment, and guidance through growth or delivery instability.
+- Platform Modernization: develop practical architecture and platform evolution roadmaps, addressing maintainability, reliability, observability, and execution risk.
+- DevSecOps Transformation: align development, security, and operations to improve delivery practices and operational maturity.
+- Technology Strategy Advisory: connect technology decisions, governance, and investment choices to business priorities.
+
+AI is evaluated selectively across these services. The focus is measured value, practical guardrails, human review, and accountability. Simpler alternatives remain valid; AI does not resolve unclear priorities, weak ownership, or misaligned teams by itself.
+
+## Website
+
+- [JALLITS home](https://www.jallits.com/): Company positioning, five advisory services, approach, and contact information.
+- [Services](https://www.jallits.com/#services): Advisory offerings and where AI can contribute.
+- [Approach](https://www.jallits.com/#approach): Understand the system, align priorities, and build sustainable execution.
+- [About JALLITS](https://www.jallits.com/#about): Company background and links to Dan Jallits.
+- [Leadership scope and technical perspective](https://www.jallits.com/#leadership-scope): Advisory environments and responsibilities drawn from the stated service positioning, plus links to public project documentation and Dan’s personal background. No employer history, credentials, years of experience, or client results are asserted.
+- [Contact](https://www.jallits.com/#connect): Connect with JALLITS on LinkedIn about an engagement.
+- [Open source projects](https://www.jallits.com/projects/): Project documentation directory.
+- [Sitemap](https://www.jallits.com/sitemap.xml): Canonical site URLs.
+
+## Working together
+
+- [Engagement models](https://www.jallits.com/engagements/): Fit, working models, typical deliverables, client participation, and scope boundaries for all five services. Scope, cadence, duration, and commercial terms are agreed individually.
+- [First conversation](https://www.jallits.com/engagements/#first-conversation): Discuss context, desired outcomes, and fit before defining a proposal.
+
+## Illustrative engagement scenarios
+
+- [Engagement scenarios](https://www.jallits.com/case-studies/): Two illustrative scenarios per service, covering challenges, proposed approaches, selective AI use, intended deliverables, and evaluation measures. These are not completed engagements, anonymized client histories, or verified results.
+
+## Project documentation
+
+Both projects are currently in planning and design. Their READMEs describe proposed capabilities and technology choices, not released applications or production-ready credential software. Website documentation is a static snapshot of the upstream README at the commit recorded in projects/sources.json.
+
+- [Keyringd documentation](https://www.jallits.com/projects/keyringd/): Complete README for a proposed GNOME-free Secret Service daemon for Linux, with Rust as the preferred implementation language.
+- [Keyringd Markdown](https://www.jallits.com/projects/keyringd/README.md): Unmodified README snapshot.
+- [Keyring Manager documentation](https://www.jallits.com/projects/keyring-manager/): Complete README for a proposed GNOME-independent Linux credential and key management interface, intended as a companion to Keyringd.
+- [Keyring Manager Markdown](https://www.jallits.com/projects/keyring-manager/README.md): Unmodified README snapshot.
+- [Documentation source commits](https://www.jallits.com/projects/sources.json): Repository identities and exact README snapshot commits.
+
+## Optional
+
+- [JALLITS on LinkedIn](https://www.linkedin.com/company/jallits): Company profile.
+- [JALLITS on GitHub](https://github.com/jallits): Organization and open source repositories.
+- [Keyringd repository](https://github.com/jallits/keyringd): Upstream project and latest documentation.
+- [Keyring Manager repository](https://github.com/jallits/keyring-manager): Upstream project and latest documentation.
+- [Dan Jallits](https://dan.jallits.com/): Personal website; the primary destination for learning about Dan.
+- [Dan on LinkedIn](https://www.linkedin.com/in/djallits): Professional profile and contact path.
+- [Dan on GitHub](https://github.com/djallits): Personal software work.
+- [Dan on X](https://x.com/danjallits): Personal social profile.
